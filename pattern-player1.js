@@ -12,6 +12,10 @@ var pattern1 = {
         {color: "#ff00ff", time:0.3, led:0},
         {color: "#0000ff", time:0.5, led:0},
         {color: "#ff0000", time:0.5, led:0},
+        {color: "#00ff00", time:0.5, led:1},
+        {color: "#000000", time:0.5, led:1},
+        {color: "#00ff00", time:0.5, led:2},
+        {color: "#000000", time:0.5, led:2},
     ],
     repeats: 3
 };
