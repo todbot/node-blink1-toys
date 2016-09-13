@@ -36,37 +36,8 @@ function PatternPlayer(blink1) {
         }
     };
 }
-/*
-var PatternPlayer = {
-    count: 0,
-    pos:0,
-    pattern:null,
-    blink1:null,
-    playStep: function() {
-        var step = this.pattern.steps[this.pos];
-        console.log("playStep:", this.pos,step);
-        var c = tinycolor(step.color).toRgb();
-        this.blink1.fadeToRGB( step.time*1000, c.r,c.g,c.b, step.led );
-        this.pos++;
-        if( this.pos === this.pattern.steps.length ) { // end of pattern
-            this.pos = 0;
-            this.count++;
-        }
-        if( this.count < this.pattern.repeats ) {
-            setTimeout( this.playStep.bind(this), step.time*1000 );
-        }
-    },
-    playPattern: function(blink1, pattern) {
-        this.pos = 0;
-        this.count = 0;
-        this.pattern = pattern;
-        this.blink1 = blink1;
-        this.playStep();
-    }
-};
-*/
 
-// for demo
+// for demo when called with "node ./patternPlayer.js"
 if (require.main === module) {
 
     var blink1 = new Blink1();
