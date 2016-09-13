@@ -13,14 +13,20 @@ function PatternPlayer(blink1) {
     this.pattern = null;
     this.blink1 = blink1;
 
-    this.playPattern = function(pattern) {
+    /**
+     * Play a color pattern
+     * @param  {Pattern}    pattern a color pattern, see below for example
+     */
+    this.playPattern = function(pattern,callback) {
         this.pattern = pattern;
         this.pos = 0;
         this.count = 0;
         this.pattern = pattern;
+        this.callback = callback;
         this._playStep();
     };
 
+    // internal function
     this._playStep = function() {
         var step = this.pattern.steps[this.pos];
         console.log("playStep:", this.pos,step);
@@ -34,6 +40,9 @@ function PatternPlayer(blink1) {
         if( this.count < this.pattern.repeats ) {
             setTimeout( this._playStep.bind(this), step.time*1000 );
         }
+        else {
+            if( this.callback ) { this.callback(this.pattern); }
+        }
     };
 }
 
@@ -45,6 +54,7 @@ if (require.main === module) {
 
     // the pattern you want to play
     var pattern1 = {
+        name: "pattern1",
         steps: [
             {color: "#ff00ff", time:0.3, led:0},
             {color: "#0000ff", time:0.5, led:0},
@@ -54,10 +64,14 @@ if (require.main === module) {
             {color: "#00ff00", time:0.5, led:2},
             {color: "#000000", time:0.5, led:2},
         ],
-        repeats: 3
+        repeats: 2
     };
 
-    player.playPattern(pattern1);
+    var callback = function(oldpattern) {
+        console.log("pattern "+ oldpattern.name + " done playing");
+    };
+
+    player.playPattern(pattern1, callback);
 }
 
 module.exports = PatternPlayer;
